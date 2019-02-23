@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    image: your_docker_id/rails_app:v1
+    image: fanaugen/ruby-on-ice:v1
     build:
       context: .
     command: ["rails", "server", "--pid=/tmp/server.pid"]
@@ -19,7 +19,7 @@ services:
       - 3000:3000
 
   sidekiq:
-    image: your_docker_id/rails_app:v1
+    image: fanaugen/ruby-on-ice:v1
     build:
       context: .
     command: ["sidekiq"]

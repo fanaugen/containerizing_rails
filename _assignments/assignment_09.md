@@ -13,7 +13,7 @@ All we have to do is:
 * Add a service to our `docker-compose.yml` to run Sidekiq:
 ```
   sidekiq:
-    image: your_docker_id/rails_app:v1
+    image: fanaugen/ruby-on-ice:v1
     build:
       context: .
     command: ["sidekiq"]

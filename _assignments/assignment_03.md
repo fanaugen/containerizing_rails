@@ -30,12 +30,12 @@ For convenience, I already put a `.dockerignore` file in place. Similar to a `.g
 
 So, let's go ahead and build the image:
 ```
-docker image build -t your_docker_id/rails_app:v1 .
+docker image build -t fanaugen/ruby-on-ice:v1 .
 ```
 
 Once the command completed successfully, we should be able to start a rails console in a container:
 ```
-docker container run -it your_docker_id/rails_app:v1
+docker container run -it fanaugen/ruby-on-ice:v1
 ```
 
 Feel free to play around with the Rails environment for a bit. You should for example be able to create some records in the database:
@@ -50,7 +50,7 @@ Press `Ctrl-D` to quit the rails console and terminate the container.
 ## Running the tests
 As we've seen before, we can run arbitrary commands in the context of the container image by appending the command after the image name. We can use this technique to execute the test suite using `rspec`:
 ```
-docker container run -it your_docker_id/rails_app:v1 rspec
+docker container run -it fanaugen/ruby-on-ice:v1 rspec
 ```
 
 Side note: We don't need the `-it` flags here because we don't run an interactive program like the Rails console. However, we will only see the colors in the output with the `-t` flag.

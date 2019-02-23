@@ -11,7 +11,7 @@ Make sure to take a look at the updated `database.yml`. As you can see, we are u
 
 Since we made changes to the source code of our application, we need to rebuild the image:
 ```
-docker image build -t your_docker_id/rails_app:v1 .
+docker image build -t fanaugen/ruby-on-ice:v1 .
 ```
 
 ## Running Postgres
@@ -41,7 +41,7 @@ Now that we have our Postgres container up and running, we need to start our Rai
 ```
 docker container run -p 3000:3000 --link pg \
   -e POSTGRES_HOST=pg -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret \
-  your_docker_id/rails_app:v1 rails s
+  fanaugen/ruby-on-ice:v1 rails s
 ```
 
 The environment variables that we pass in are used to configure the connection to our Postgres database. These environment variables are read in out `database.yml`.
@@ -52,7 +52,7 @@ If you open your browser and go to http://localhost:3000, you will see that we n
 ```
 docker container run --link pg \
   -e POSTGRES_HOST=pg -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=secret \
-  your_docker_id/rails_app:v1 rake db:create db:migrate db:test:prepare
+  fanaugen/ruby-on-ice:v1 rake db:create db:migrate db:test:prepare
 ```
 
 With the database schema in place you should be able to to interact with our application through the web interface.

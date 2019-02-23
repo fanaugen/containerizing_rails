@@ -17,7 +17,7 @@ CMD /usr/games/cowsay "Containers are awesome!"
 
 Now, from within directory containing the `Dockerfile`, you can build the container image:
 ```
-docker image build -t your_docker_id/cowsay:v1 .
+docker image build -t fanaugen/cowsay:v1 .
 ```
 
 You will see that Docker is first pulling our base image (`ubuntu:18.04`). After that, each individual instruction in the `Dockerfile` will be executed in order to build the image. The output of the command will look similar to this:
@@ -119,20 +119,20 @@ Step 3/3 : CMD /usr/games/cowsay "Containers are awesome!"
 Removing intermediate container 487bea9e4c74
  ---> 760f3018b10b
 Successfully built 760f3018b10b
-Successfully tagged your_docker_id/cowsay:v1
+Successfully tagged fanaugen/cowsay:v1
 ```
 
 
 After the build process finishes, you can verify that the build was successful and that image exists on your system:
 ```
 docker image ls # to list all images
-docker image ls your_docker_id/cowsay # to list images in the `your_docker_id/cowsay` repository
+docker image ls fanaugen/cowsay # to list images in the `fanaugen/cowsay` repository
 ```
 
 ### Using the image
 We can now run a container based on this image:
 ```
-docker container run your_docker_id/cowsay:v1
+docker container run fanaugen/cowsay:v1
 ```
 
 You should see they cow saying `Containers are awesome!`:
@@ -151,21 +151,21 @@ You should see they cow saying `Containers are awesome!`:
 ### Running other commands
 Time to play around for a bit! We can execute arbitrary commands in a container - all we have to do is to append the command after the image name. For example:
 ```
-docker container run your_docker_id/cowsay:v1 echo "Running the echo command in the cowsay image"
+docker container run fanaugen/cowsay:v1 echo "Running the echo command in the cowsay image"
 ```
 
-This will print `Running the echo command in the cowsay image`. The output was produced by the `echo` executable that is part of the `your_docker_id/cowsay:v1` image. In fact, we "inherited" this executable from the `ubuntu:18.04` image.
+This will print `Running the echo command in the cowsay image`. The output was produced by the `echo` executable that is part of the `fanaugen/cowsay:v1` image. In fact, we "inherited" this executable from the `ubuntu:18.04` image.
 
 ### Missing commands
 The executable for whatever command we run in the container must be present in the container image. This means even with Ruby installed on our local system, the following command will fail:
 ```
-docker container run your_docker_id/cowsay:v1 ruby -v
+docker container run fanaugen/cowsay:v1 ruby -v
 ```
 
 ### Interactive programs
 Let's try something else and start an interactive program like a shell in a container. We already know that we can specify which command we want to run in the container. However, for interactive applications like a shell, we have to specify the `-it` flags *before* the image name:
 ```
-docker container run -it your_docker_id/cowsay:v1 bash
+docker container run -it fanaugen/cowsay:v1 bash
 ```
 
 This command will open a shell prompt in a new container. Try it out - you will be able to navigate the containers file system and execute arbitrary commands as well. For example:

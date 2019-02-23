@@ -3,7 +3,7 @@ Rebuilding the image every time we make changes is tedious and slows us down in 
 
 ```
   app:
-    image: your_docker_id/rails_app:v1
+    image: fanaugen/ruby-on-ice:v1
     build:
       context: .
     command: ["rails", "server", "--pid=/tmp/server.pid"]
