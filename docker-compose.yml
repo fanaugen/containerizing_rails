@@ -11,6 +11,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
       - RAILS_ENV
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
     ports:
       - 3000:3000
     volumes:
@@ -23,6 +25,24 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
+
+  sidekiq:
+    image: fanaugen/ruby-on-ice:v1
+    build:
+      context: .
+    command: ["sidekiq"]
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - REDIS_HOST=redis
+      - SIDEKIQ_ENABLED=true
+      - RAILS_ENV
+
+  redis:
+    image: redis:5.0
 
 volumes:
   pg-data:
