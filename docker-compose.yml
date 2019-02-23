@@ -5,7 +5,7 @@ services:
     image: fanaugen/ruby-on-ice:v1
     build:
       context: .
-    command: ["rails", "server"]
+    command: ["rails", "server", "--pid=/tmp/server.pid"]
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -13,6 +13,8 @@ services:
       - RAILS_ENV
     ports:
       - 3000:3000
+    volumes:
+      - ./:/usr/src/app
 
   pg:
     image: postgres:10.6-alpine
